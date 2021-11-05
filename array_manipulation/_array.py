@@ -6,11 +6,11 @@ MIN_REAL_CAPACITY = 16
 GROWTH_FACTOR = 2
 SHRINK_FACTOR = 4
 
-
-T = TypeVar("T", int, str, None)
-
 INDEX_OUT_OF_RANGE_ERROR = "Index out of range."
 NOT_MATCH_VALUE_FOUND_ERROR = "No match value found."
+
+
+T = TypeVar("T", int, str, None)
 
 
 class Array:
