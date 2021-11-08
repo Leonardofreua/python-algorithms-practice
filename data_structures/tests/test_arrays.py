@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from _array import Array
+from data_structures._array import Array
 
 
 class TestArrays(TestCase):
