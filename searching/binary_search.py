@@ -41,20 +41,3 @@ def binary_search(list_of_items: List[T], target: T) -> Optional[int]:
             left = middle + 1
 
     return None  # The target item doesn't exist.
-
-
-def binary_search_rec(
-    list_of_items: List[T], target: T, left: int, right: int
-) -> Optional[int]:
-    if left >= right:
-        return None
-
-    middle = left + (right - left) // 2  # Position of the MIDDLE item on the list.
-
-    guess = list_of_items[middle]
-    if guess > target:  # The guess was TOO HIGH.
-        return binary_search_rec(list_of_items, target, left, middle)
-    elif guess < target:  # The guess was TOO LOW.
-        return binary_search_rec(list_of_items, target, middle + 1, right)
-    else:  # Found the target item in the MIDDLE.
-        return middle
