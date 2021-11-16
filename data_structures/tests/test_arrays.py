@@ -1,9 +1,9 @@
-from unittest import TestCase
+import unittest
 
 from data_structures._array import Array
 
 
-class TestArrays(TestCase):
+class TestArrays(unittest.TestCase):
     def test_new_array(self) -> None:
         new_array = Array(10)
         self.assertEqual(new_array.size(), 0)
