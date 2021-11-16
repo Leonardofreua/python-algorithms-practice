@@ -21,10 +21,11 @@ class Array:
         About: An array is a contiguous area of memory consisting of equal-size
         elements indexed by contiguous integers.
 
-        - Complexity:
-            * Constant-time access to any element - O(1);
-            * Constant-time to add/remove at the end - O(1);
-            * Linear time to add/remove at an arbitrary location - O(n).
+        - Complexity (AVERAGE and WORST):
+            * Access: O(1)
+            * Search: O(n)
+            * Insertion: O(n)
+            * Deletion: O(n)
         """
         self._size: int = INITIAL_SIZE
         self._capacity: int = self._set_capacity(capacity)
