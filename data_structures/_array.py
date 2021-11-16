@@ -30,6 +30,34 @@ class Array:
         self._capacity: int = self._set_capacity(capacity)
         self.data: list[T] = []
 
+    def __iter__(self) -> T:
+        return iter(self.data)
+
+    def __getitem__(self, index: int) -> T:
+        """
+        Returns item at given index.
+
+        - Complexity: O(1)
+
+        Args:
+            index: Index where the item is found.
+
+        Raises:
+            - IndexError: If index out of range.
+            - ValueError: If the index is not an Integer.
+
+        Return:
+            T: The found item
+        """
+        self._validate_index_type(index)
+        if index == -1:
+            return self._get_last_item()
+
+        for i, value in enumerate(self.data):
+            if i == index:
+                return value
+        raise IndexError(INDEX_OUT_OF_RANGE_ERROR)
+
     def append(self, value: T) -> None:
         """
         Add an item to the end of the list.
@@ -87,29 +115,6 @@ class Array:
 
             self.data = left_content
             self._size += 1
-
-    def at(self, index: int) -> T:
-        """
-        Returns item at given index.
-
-        - Complexity: O(1)
-
-        Args:
-            index: Index where the item is found.
-
-        Raises:
-            - IndexError: If index out of range.
-            - ValueError: If the index is not an Integer.
-
-        Return:
-            T: The found item
-        """
-        self._validate_index_type(index)
-
-        if index < INITIAL_SIZE or index > self._size - 1:
-            raise IndexError(INDEX_OUT_OF_RANGE_ERROR)
-
-        return self.data[index]
 
     def pop(self, index: int = None) -> T:
         """
@@ -229,6 +234,9 @@ class Array:
     def _reorganize(self, target_index: int) -> None:
         for i in range(target_index, self._size - 1):
             self.data[i] = self.data[i + 1]
+
+    def _get_last_item(self):
+        return self.data[::-1][0]
 
     @staticmethod
     def _set_capacity(capacity: int) -> int:

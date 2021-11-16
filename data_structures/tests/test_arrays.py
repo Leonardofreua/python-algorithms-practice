@@ -14,7 +14,7 @@ class TestArrays(unittest.TestCase):
 
         for index, value in enumerate(range(0, 20)):
             new_array.append(value)
-            self.assertEqual(new_array.data[index], value)
+            self.assertEqual(new_array[index], value)
             self.assertEqual(new_array.size(), index + 1)
 
     def test_string_append(self) -> None:
@@ -22,7 +22,7 @@ class TestArrays(unittest.TestCase):
 
         for index, value in enumerate(["hi", "olá", "salut", "Guten Tag", "Anyoung"]):
             new_array.append(value)
-            self.assertEqual(new_array.data[index], value)
+            self.assertEqual(new_array[index], value)
             self.assertEqual(new_array.size(), index + 1)
 
     def test_insert_integer_at_the_beginning(self) -> None:
@@ -33,11 +33,11 @@ class TestArrays(unittest.TestCase):
             new_array.append(value)
 
         new_array.insert(0, 3)
-        self.assertEqual(new_array.data[0], 3)
+        self.assertEqual(new_array[0], 3)
         self.assertEqual(new_array.size(), 4)
 
         new_array.insert(0, 4)
-        self.assertEqual(new_array.data[0], 4)
+        self.assertEqual(new_array[0], 4)
         self.assertEqual(new_array.size(), 5)
 
     def test_insert_string_at_the_beginning(self) -> None:
@@ -47,11 +47,11 @@ class TestArrays(unittest.TestCase):
             new_array.append(value)
 
         new_array.insert(0, "Guten Tag")
-        self.assertEqual(new_array.data[0], "Guten Tag")
+        self.assertEqual(new_array[0], "Guten Tag")
         self.assertEqual(new_array.size(), 4)
 
         new_array.insert(0, "Anyoung")
-        self.assertEqual(new_array.data[0], "Anyoung")
+        self.assertEqual(new_array[0], "Anyoung")
         self.assertEqual(new_array.size(), 5)
 
     def test_insert_integer_at_the_end(self) -> None:
@@ -63,11 +63,11 @@ class TestArrays(unittest.TestCase):
 
         # index > size
         new_array.insert(new_array.size() + 1, 4)
-        self.assertEqual(new_array.data[-1], 4)
+        self.assertEqual(new_array[-1], 4)
 
         # index < 0
         new_array.insert(-1, 5)
-        self.assertEqual(new_array.data[-1], 5)
+        self.assertEqual(new_array[-1], 5)
 
         self.assertEqual(new_array.size(), 5)
 
@@ -79,11 +79,11 @@ class TestArrays(unittest.TestCase):
 
         # index > size
         new_array.insert(new_array.size() + 1, "Guten Tag")
-        self.assertEqual(new_array.data[-1], "Guten Tag")
+        self.assertEqual(new_array[-1], "Guten Tag")
 
         # index < 0
         new_array.insert(-1, "Anyoung")
-        self.assertEqual(new_array.data[-1], "Anyoung")
+        self.assertEqual(new_array[-1], "Anyoung")
 
         self.assertEqual(new_array.size(), 5)
 
@@ -97,12 +97,12 @@ class TestArrays(unittest.TestCase):
         # In place of the 5
         new_array.insert(5, 88)
         # [0, 1, 2, 3, 4, 88, 5, 6, 7, 8, 9]
-        self.assertEqual(new_array.data[5], 88)
+        self.assertEqual(new_array[5], 88)
 
         # In place of the 9
         new_array.insert(10, 10)
         # [0, 1, 2, 3, 4, 88, 5, 6, 7, 8, 10, 9]
-        self.assertEqual(new_array.data[10], 10)
+        self.assertEqual(new_array[10], 10)
 
         self.assertEqual(new_array.size(), 12)
 
@@ -115,12 +115,12 @@ class TestArrays(unittest.TestCase):
         # In place of the Guten Tag
         new_array.insert(3, "Ahlan")
         # ["hi", "olá", "salut", "Ahlan", "Guten Tag", "Anyoung", "Goddag"]
-        self.assertEqual(new_array.data[3], "Ahlan")
+        self.assertEqual(new_array[3], "Ahlan")
 
         # In place of the Goddag
         new_array.insert(6, "Yassou")
         # ["hi", "olá", "salut", "Ahlan", "Guten Tag", "Anyoung", "Yassou", "Goddag"]
-        self.assertEqual(new_array.data[6], "Yassou")
+        self.assertEqual(new_array[6], "Yassou")
 
         self.assertEqual(new_array.size(), 8)
 
@@ -136,19 +136,19 @@ class TestArrays(unittest.TestCase):
         for value in range(20):
             new_array.append(value)
 
-        self.assertEqual(new_array.at(19), 19)
+        self.assertEqual(new_array[19], 19)
 
     def test_raise_IndexError_getting_value_list_out_of_range(self) -> None:
         new_array = Array()
 
         with self.assertRaises(IndexError):
-            new_array.at(0)
+            new_array[0]
 
     def test_raise_ValueError_getting_value_with_an_invalid_index_type(self) -> None:
         new_array = Array()
 
         with self.assertRaises(ValueError):
-            new_array.at("i")
+            new_array["i"]
 
     def test_pop_integer_value_at_the_end(self) -> None:
         new_array = Array()
@@ -163,13 +163,13 @@ class TestArrays(unittest.TestCase):
         # [0, 1]
         self.assertEqual(p1, 2)
         self.assertEqual(new_array.size(), 2)
-        self.assertEqual(new_array.data[-1], 1)
+        self.assertEqual(new_array[-1], 1)
 
         p2 = new_array.pop()
         # [0]
         self.assertEqual(p2, 1)
         self.assertEqual(new_array.size(), 1)
-        self.assertEqual(new_array.data[-1], 0)
+        self.assertEqual(new_array[-1], 0)
 
     def test_pop_string_value_at_the_end(self) -> None:
         new_array = Array()
@@ -224,25 +224,25 @@ class TestArrays(unittest.TestCase):
         # [0, 1, 2, 4]
         self.assertEqual(p1, 3)
         self.assertEqual(new_array.size(), 4)
-        self.assertEqual(new_array.data[-1], 4)
+        self.assertEqual(new_array[-1], 4)
 
         p2 = new_array.pop(2)
         # [0, 1, 4]
         self.assertEqual(p2, 2)
         self.assertEqual(new_array.size(), 3)
-        self.assertEqual(new_array.data[-1], 4)
+        self.assertEqual(new_array[-1], 4)
 
         p3 = new_array.pop(1)
         # [0, 4]
         self.assertEqual(p3, 1)
         self.assertEqual(new_array.size(), 2)
-        self.assertEqual(new_array.data[-1], 4)
+        self.assertEqual(new_array[-1], 4)
 
         p4 = new_array.pop(0)
         # [4]
         self.assertEqual(p4, 0)
         self.assertEqual(new_array.size(), 1)
-        self.assertEqual(new_array.data[-1], 4)
+        self.assertEqual(new_array[-1], 4)
 
         p5 = new_array.pop(0)
         # []
@@ -298,15 +298,15 @@ class TestArrays(unittest.TestCase):
             new_array.append(value)
 
         new_array.remove(4)
-        self.assertListEqual(new_array.data, [1, 2, 3, 4, 5, 6, 6])
+        self.assertListEqual(list(new_array), [1, 2, 3, 4, 5, 6, 6])
         self.assertEqual(new_array.size(), 7)
 
         new_array.remove(6)
-        self.assertListEqual(new_array.data, [1, 2, 3, 4, 5, 6])
+        self.assertListEqual(list(new_array), [1, 2, 3, 4, 5, 6])
         self.assertEqual(new_array.size(), 6)
 
         new_array.remove(3)
-        self.assertListEqual(new_array.data, [1, 2, 4, 5, 6])
+        self.assertListEqual(list(new_array), [1, 2, 4, 5, 6])
         self.assertEqual(new_array.size(), 5)
 
     def test_remove_string_value(self) -> None:
@@ -326,21 +326,21 @@ class TestArrays(unittest.TestCase):
 
         new_array.remove("olá")
         self.assertListEqual(
-            new_array.data,
+            list(new_array),
             ["hi", "salut", "Guten Tag", "Guten Tag", "Anyoung", "Goddag", "Goddag"],
         )
         self.assertEqual(new_array.size(), 7)
 
         new_array.remove("Goddag")
         self.assertListEqual(
-            new_array.data,
+            list(new_array),
             ["hi", "salut", "Guten Tag", "Guten Tag", "Anyoung", "Goddag"],
         )
         self.assertEqual(new_array.size(), 6)
 
         new_array.remove("Guten Tag")
         self.assertListEqual(
-            new_array.data, ["hi", "salut", "Guten Tag", "Anyoung", "Goddag"]
+            list(new_array), ["hi", "salut", "Guten Tag", "Anyoung", "Goddag"]
         )
         self.assertEqual(new_array.size(), 5)
 
@@ -360,15 +360,15 @@ class TestArrays(unittest.TestCase):
             new_array.append(value)
 
         new_array.remove_all([4, 4])
-        self.assertListEqual(new_array.data, [1, 2, 3, 5, 6, 6])
+        self.assertListEqual(list(new_array), [1, 2, 3, 5, 6, 6])
         self.assertEqual(new_array.size(), 6)
 
         new_array.remove_all([6, 6])
-        self.assertListEqual(new_array.data, [1, 2, 3, 5])
+        self.assertListEqual(list(new_array), [1, 2, 3, 5])
         self.assertEqual(new_array.size(), 4)
 
         new_array.remove_all([3, 5])
-        self.assertListEqual(new_array.data, [1, 2])
+        self.assertListEqual(list(new_array), [1, 2])
         self.assertEqual(new_array.size(), 2)
 
     def test_remove_multiple_string_value(self) -> None:
@@ -388,20 +388,20 @@ class TestArrays(unittest.TestCase):
 
         new_array.remove_all(["olá", "hi"])
         self.assertListEqual(
-            new_array.data,
+            list(new_array),
             ["salut", "Guten Tag", "Guten Tag", "Anyoung", "Goddag", "Goddag"],
         )
         self.assertEqual(new_array.size(), 6)
 
         new_array.remove_all(["Goddag", "Goddag"])
         self.assertListEqual(
-            new_array.data,
+            list(new_array),
             ["salut", "Guten Tag", "Guten Tag", "Anyoung"],
         )
         self.assertEqual(new_array.size(), 4)
 
         new_array.remove_all(["Guten Tag", "Guten Tag"])
-        self.assertListEqual(new_array.data, ["salut", "Anyoung"])
+        self.assertListEqual(list(new_array), ["salut", "Anyoung"])
         self.assertEqual(new_array.size(), 2)
 
     def test_raise_ValueError_when_try_find_a_non_existent_value(self) -> None:
@@ -419,7 +419,7 @@ class TestArrays(unittest.TestCase):
         for value in [100, 44, 78, 22, 37]:
             new_array.append(value)
 
-        for index, value in enumerate(new_array.data):
+        for index, value in enumerate(new_array):
             self.assertEqual(new_array.find(value), index)
 
     def test_find_string_value(self) -> None:
@@ -428,7 +428,7 @@ class TestArrays(unittest.TestCase):
         for value in ["a", "b", "c", "z", "Y", "w"]:
             new_array.append(value)
 
-        for index, value in enumerate(new_array.data):
+        for index, value in enumerate(new_array):
             self.assertEqual(new_array.find(value), index)
 
 
